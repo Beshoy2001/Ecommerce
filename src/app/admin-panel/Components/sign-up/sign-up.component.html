@@ -1,0 +1,64 @@
+<div class="container py-5" style="background: rgb(148,208,255);
+background: linear-gradient(180deg, rgba(148,208,255,1) 0%, rgba(255,255,255,1) 100%);">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center mb-2">Register Form</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
+                    <div class="card border-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0 my-2">Sign Up</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" name="name" [(ngModel)]="newUser.name" class="form-control" id="inputName" placeholder="full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3">Email</label>
+                                    <input type="email" name="email" [(ngModel)]="newUser.email" class="form-control" id="inputEmail3" placeholder="email@gmail.com" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">User Name</label>
+                                    <input type="text" name="uname" [(ngModel)]="newUser.userName" autocomplete="off" class="form-control"  placeholder="User Name" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3">Password</label>
+                                    <input type="password" name="pass" [(ngModel)]="newUser.password" class="form-control" id="inputPassword3" placeholder="password" title="At least 6 characters with letters and numbers" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">Verify</label>
+                                    <input type="password" name="vpass" [(ngModel)]="verifyPass" class="form-control" id="" placeholder="password (again)" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">Address</label>
+                                    <input type="text" name="address" class="form-control" [(ngModel)]="newUser.address" id="" placeholder="Address" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">City</label>
+                                    <input type="text" name="city" class="form-control" [(ngModel)]="newUser.city" id="" placeholder="City" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputVerify3">Role</label>
+                                    <select name="r" class="form-control" [(ngModel)]="newUser.role">
+                                        
+                                        <option *ngFor="let r of roles" [value]="r.id">{{r.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button (click)="register()"  class="btn btn-success btn-lg float-right">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
+</div>
+<!--/container-->

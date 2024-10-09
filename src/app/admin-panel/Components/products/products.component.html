@@ -1,0 +1,152 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <div class="card border-secondary">
+                    <div class="card-header">
+                        <h3 class="mb-0 my-2">Add Product</h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="form" role="form" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" [(ngModel)]="product.name" required="required"
+                                            class="form-control" id="inputName" placeholder="product name">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputName">Description</label>
+                                        <input type="text" name="desc" [(ngModel)]="product.description"
+                                            required="required" class="form-control" placeholder="Description">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputName">Price</label>
+                                        <input type="number" name="price" [(ngModel)]="product.price"
+                                            required="required" class="form-control" placeholder="Price">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputName">Rating</label>
+                                        <!-- stars -->
+                                        <div style="font-size: x-large;">
+                                            <!-- <i class="fas fa-star fa-lg" style="color: #fbff00;"></i>
+                                            <i class="fas fa-star fa-lg" style="color: #fbff00;"></i>
+                                            <i class="fas fa-star fa-lg" style="color: #fbff00;"></i>
+                                            <i class="fas fa-star fa-lg" style="color: #fbff00;"></i> -->
+                                            <i class="far fa-star fa-lg" style="color: #000000;"
+                                                (click)="setRate(1,$event)"></i>
+                                            <i class="far fa-star fa-lg" style="color: #000000;"
+                                                (click)="setRate(2,$event)"></i>
+                                            <i class="far fa-star fa-lg" style="color: #000000;"
+                                                (click)="setRate(3,$event)"></i>
+                                            <i class="far fa-star fa-lg" style="color: #000000;"
+                                                (click)="setRate(4,$event)"></i>
+                                            <i class="far fa-star fa-lg" style="color: #000000;"
+                                                (click)="setRate(5,$event)"></i>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <i id="undo"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputEmail3">Image</label>
+                                        <input type="file" name="img" (change)="setImgFile($event)" class="form-control"
+                                            id="inputEmail3" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputVerify3">Main Category</label>
+                                        <select class="form-control" (change)="setSubCategories($event)">
+                                            <option selected="selected" value="-1">Please Select</option>
+                                            <option *ngFor="let mc of MainCategories" [value]="mc.id">{{mc.name}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="inputPassword3">Sub Category</label>
+                                        <select class="form-control" name="subcat" [(ngModel)]="product.SubcategoryId">
+                                            <option *ngFor="let subC of subCategories" [value]="subC.id">{{subC.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button (click)="SaveNewProduct()"
+                                            class="btn btn-success btn-lg float-right">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11 mx-auto">
+                <app-spinner *ngIf="isLoading == true"></app-spinner>
+                <table class="table table-bordered table-responsive-md table-striped"
+                    style="background-color: aliceblue;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>SubCategory Id</th>
+                            <th>SubCategory Name</th>
+                            <th>Rate</th>
+                            <th>Image</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of prodList">
+                            <td>{{p.id}}</td>
+                            <td>{{p.name}}</td>
+                            <td>{{p.description}}</td>
+                            <td>{{p.price}}</td>
+                            <td>{{p.subcategoryId}}</td>
+                            <td>{{p.subcategoryName}}</td>
+                            <td>{{p.rating}}</td>
+                            <td><img [src]="'data:image/jpeg;base64,'  + p.imageBin+''" style="width:100px;height: 90px;"></td>
+                            <td><button class="btn btn-warning">Update</button>
+                                <button (click)="DeleteProduct( p.id, p.name)" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <!--/row-->
+
+    </div>
+    <!--/col-->
+</div>
+<!--/row-->
+
+<!--/container-->
